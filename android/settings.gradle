@@ -1,0 +1,3 @@
+rootProject.name = 'codejong_example'
+
+include ':app'
