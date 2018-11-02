@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import styles from "./style";
-
-class FlexDemo extends Component {
+export default class FlexDemo extends Component {
   render() {
     return (
       <View style={styles.parent}>
@@ -15,4 +13,21 @@ class FlexDemo extends Component {
   }
 }
 
-export default FlexDemo;
+const styles = StyleSheet.create({
+  parent: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-end",
+    backgroundColor: "#F5FCFF",
+    borderColor: "#0099AA",
+    borderWidth: 5,
+    marginTop: 30
+  },
+  child: {
+    flex: 1,
+    borderColor: "#AA0099",
+    borderWidth: 2,
+    textAlign: "center",
+    fontSize: 24
+  }
+});
