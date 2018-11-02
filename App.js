@@ -30,6 +30,12 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
+        <Button
+          onPress={() => {
+            Alert.alert('You tapped the button!');
+          }}
+          title="Press Me"
+        />
         <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
           <View style={styles.button}>
             <Text style={styles.buttonText}>TouchableHighlight</Text>
