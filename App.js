@@ -21,9 +21,9 @@ export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <View style={{ borderColor: 'blue', borderWidth: 1}}>
+          <Text style={{paddingTop:100, fontSize:50}}> I'm <Text onPress={()=>{ alert('wow'); }} style={{color:'red'}}> link </Text> !!! </Text>
+        </View>
       </View>
     );
   }
