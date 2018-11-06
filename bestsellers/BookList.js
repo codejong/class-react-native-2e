@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import { StyleSheet, Text, View, Image, FlatList, ActivityIndicator } from "react-native";
-import moment from 'moment';
 
 import BookItem from "./BookItem";
 import NYT from "./NYT";
