@@ -16,7 +16,7 @@ const date = new Date();
 CalendarManager.addEvent(
   'Birthday Party',
   '4 Privet Drive, Surrey',
-  date.getTime(),
+  [],
 ); // passing date as number of milliseconds since Unix epoch
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
