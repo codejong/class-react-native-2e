@@ -19,6 +19,14 @@ CalendarManager.addEvent('Birthday Party', {
   description: '...',
 });
 
+CalendarManager.findEvents((error, events) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(events);
+  }
+});
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
