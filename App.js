@@ -7,11 +7,19 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, NativeModules} from 'react-native';
 
-import {NativeModules} from 'react-native';
-var CalendarManager = NativeModules.RNMyLibrary;
 
+
+setTimeout(()=>{
+  console.log(NativeModules);
+  var CalendarManager = NativeModules.RNMyLibrary;
+  console.log(CalendarManager.addEvent);
+
+},2000)
+
+// CalendarManager.addEvent('YOYO');
+/*
 const date = new Date();
 CalendarManager.addEvent('Birthday Party', {
   location: '4 Privet Drive, Surrey',
@@ -24,6 +32,7 @@ CalendarManager.findEvents()
   console.log('promise then: ',result)
 })
 .catch( console.error );
+*/
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
