@@ -1,0 +1,7 @@
+{
+  "react-native.ios.runArguments.simulator": [
+    "--simulator",
+    "iPhone 8"
+  ],
+  "prettier.eslintIntegration": true
+}
