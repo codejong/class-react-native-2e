@@ -7,8 +7,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
+    "md5": "^2.2.1",
     "react": "16.6.0-alpha.8af6728",
-    "react-native": "0.57.4"
+    "react-native": "0.57.4",
+    "react-native-gesture-handler": "^1.0.9",
+    "react-navigation": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
