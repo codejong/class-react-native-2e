@@ -1,20 +1,28 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Text, View, Image, FlatList, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  ActivityIndicator
+} from "react-native";
 
 import BookItem from "./BookItem";
 import NYT from "./NYT";
-import NAVER from './NAVER';
+import NAVER from "./NAVER";
 
 class BookList extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      data: [], 
+    this.state = {
+      data: [],
       refreshing: false,
       loadingMore: false,
       lastPage: 1
     };
+    this.onEndReachedCalledDuringMomentum = true;
   }
 
   componentDidMount() {
@@ -23,11 +31,7 @@ class BookList extends Component {
 
   _renderItem = ({ item }) => {
     return (
-      <BookItem
-        coverURL={item.image}
-        title={item.title}
-        author={item.author}
-      />
+      <BookItem coverURL={item.image} title={item.title} author={item.author} />
     );
   };
 
@@ -46,50 +50,63 @@ class BookList extends Component {
     });
 
     NAVER.fetchBooks().then(books => {
-      this.setState({ 
+      this.setState({
         data: this._addKeysToBooks(books),
-        refreshing:false,
+        refreshing: false,
         lastPage: 1
       });
     });
   };
 
-  _onEndReached = ({distanceFromEnd}) => {
-    console.log(distanceFromEnd);
-    if(distanceFromEnd > -50){ //footer
+  _onEndReached = ({ distanceFromEnd }) => {
+    if (!this.onEndReachedCalledDuringMomentum) {
+      console.log(distanceFromEnd);
       this.setState({
         loadingMore: true
       });
-    
-      NAVER.fetchBooks(this.state.lastPage+1).then(books => {
+
+      NAVER.fetchBooks(this.state.lastPage + 1).then(books => {
         console.log(books);
-        this.setState( state => ({
+        this.setState(state => ({
           data: state.data.concat(this._addKeysToBooks(books)),
-          lastPage: state.lastPage+1,
+          lastPage: state.lastPage + 1,
           loadingMore: false
-        })); 
+        }));
       });
+      this.onEndReachedCalledDuringMomentum = true;
     }
-  }
+  };
 
   _renderFooter = () => {
-    return <View style={{height:50, flex:1, alignItems:'center', justifyContent:'center'}}>
-      <ActivityIndicator animating={this.state.loadingMore} size="small"/>
-    </View>
-  }
+    return (
+      <View
+        style={{
+          height: 50,
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <ActivityIndicator animating={this.state.loadingMore} size="small" />
+      </View>
+    );
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <FlatList 
-          data={this.state.data} 
-          renderItem={this._renderItem} 
+        <FlatList
+          data={this.state.data}
+          renderItem={this._renderItem}
           onEndReached={this._onEndReached}
           onRefresh={this._refreshData}
           refreshing={this.state.refreshing}
           onEndReachedThreshold={0.3}
           ListFooterComponent={this._renderFooter}
-          />
+          onMomentumScrollBegin={() => {
+            this.onEndReachedCalledDuringMomentum = false;
+          }}
+        />
       </View>
     );
   }
